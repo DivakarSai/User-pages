@@ -13,7 +13,6 @@ def sign_up(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-
             # Log in the user
             login(request, user)
 
@@ -46,12 +45,13 @@ def user_login(request):
                 login(request, user)
                 # Redirect to a specific URL after successful login
                 print("user.username : " + user.username)
-                return render(request, "main/home.html") # Replace 'dashboard' with your desired URL name
+                return render(request, 'registration/login.html', {'form': form, 'error_message': error_message})
             else:
                 # Handle invalid login credentials
                 error_message = "Invalid username/email or password."
-                print(error_message)
+
                 return render(request, 'registration/login.html', {'form': form, 'error_message': error_message})
+
     else:
         form = LoginForm()
 
