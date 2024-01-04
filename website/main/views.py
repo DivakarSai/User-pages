@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, authenticate, logout
 
@@ -34,4 +34,25 @@ def dashboard(request):
 
 
     return render(request, "main/dashboard.html")
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username_or_email = form.cleaned_data.get('username_or_email')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username_or_email, password=password)
+            if user is not None:
+                login(request, user)
+                # Redirect to a specific URL after successful login
+                print("user.username : " + user.username)
+                return render(request, "main/home.html") # Replace 'dashboard' with your desired URL name
+            else:
+                # Handle invalid login credentials
+                error_message = "Invalid username/email or password."
+                return render(request, 'login.htm', {'form': form, 'error_message': error_message})
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})
 
