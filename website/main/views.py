@@ -35,21 +35,16 @@ def dashboard(request):
 
 def user_login(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username_or_email = form.cleaned_data.get('username_or_email')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username_or_email, password=password)
-            if user is not None:
-                login(request, user)
-                # Redirect to a specific URL after successful login
-                print("user.username : " + user.username)
-                return render(request, 'registration/login.html', {'form': form, 'error_message': error_message})
-            else:
-                # Handle invalid login credentials
-                error_message = "Invalid username/email or password."
-                return render(request, 'login.html', {'form': form, 'error_message': error_message})
+        username_or_email = request.POST.get('username_or_email')
+        password = request.POST.get('password')
+        
+        user = authenticate(username=username_or_email, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')  # Redirect to dashboard upon successful login
+        else:
+            error_message = "Invalid username/email or password."
+            return render(request, 'registration/login.html', {'error_message': error_message})
     else:
-        form = LoginForm()
-
-    return render(request, 'login.html', {'form': form})
+        return render(request, 'registration/login.html')
