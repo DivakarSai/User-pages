@@ -14,10 +14,14 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
 
+            # Explicitly specify the authentication backend after user creation
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            user.save()
+
             # Log in the user
             login(request, user)
 
-            return redirect("home")
+            return redirect("dashboard")
     else:
         form = RegisterForm()
 
