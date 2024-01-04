@@ -3,6 +3,7 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -26,9 +27,6 @@ def sign_up(request):
 @login_required(login_url="/login")
 def dashboard(request):
 
-    print("request.user : " + request.user.username)
-
-    # any validations here
     if not request.user.is_authenticated:
         raise Exception("You are not logged in")
 
@@ -55,4 +53,3 @@ def user_login(request):
         form = LoginForm()
 
     return render(request, 'login.html', {'form': form})
-

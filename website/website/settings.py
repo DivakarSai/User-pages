@@ -94,7 +94,8 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = [
-    'authentication_app.backends.EmailOrUsernameModelBackend',
+    'main.backends.EmailOrUsernameModelBackend',  # Replace 'myapp' with your app name
+    'django.contrib.auth.backends.ModelBackend', 
 ]
 
 
