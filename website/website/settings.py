@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "main.apps.MainConfig",
     "crispy_forms",
-    "crispy_bootstrap5"
+    "crispy_bootstrap5",
+    'debug_toolbar'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = "website.urls"
@@ -138,5 +140,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-LOGIN_REDIRECT_URL = '/dashboard'
+LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/login'

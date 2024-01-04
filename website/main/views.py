@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, authenticate, logout
+from django.http import HttpResponse
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -49,11 +50,9 @@ def user_login(request):
             else:
                 # Handle invalid login credentials
                 error_message = "Invalid username/email or password."
-
-                return render(request, 'registration/login.html', {'form': form, 'error_message': error_message})
-
+                return render(request, 'login.html', {'form': form, 'error_message': error_message})
     else:
         form = LoginForm()
 
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
