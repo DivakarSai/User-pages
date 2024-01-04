@@ -36,7 +36,7 @@ cd website
 
 4. Install required libraries
 ```
-pip install -r requirements. txt
+pip install -r requirements.txt
 ```
 
 5. run server
