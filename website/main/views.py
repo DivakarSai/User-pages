@@ -36,3 +36,20 @@ def dashboard(request):
 @login_required(login_url="/login")
 def profile(request):
     return render(request, "main/profile.html")
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username_or_email = request.POST.get('username_or_email')
+        password = request.POST.get('password')
+        
+        user = authenticate(username=username_or_email, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')  # Redirect to dashboard upon successful login
+        else:
+            error_message = "Invalid username/email or password."
+            return render(request, 'registration/login.html', {'error_message': error_message})
+    else:
+        return render(request, 'registration/login.html')
