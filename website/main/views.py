@@ -50,9 +50,10 @@ def user_login(request):
             else:
                 # Handle invalid login credentials
                 error_message = "Invalid username/email or password."
-                return render(request, 'login.htm', {'form': form, 'error_message': error_message})
+                print(error_message)
+                return render(request, 'registration/login.html', {'form': form, 'error_message': error_message})
     else:
         form = LoginForm()
 
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'registration/login.html', {'form': form})
 
