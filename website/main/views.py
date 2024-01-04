@@ -26,8 +26,6 @@ def sign_up(request):
 @login_required(login_url="/login")
 def dashboard(request):
 
-    print("request.user : " + request.user.username)
-
     # any validations here
     if not request.user.is_authenticated:
         raise Exception("You are not logged in")
@@ -35,3 +33,6 @@ def dashboard(request):
 
     return render(request, "main/dashboard.html")
 
+@login_required(login_url="/login")
+def profile(request):
+    return render(request, "main/profile.html")
