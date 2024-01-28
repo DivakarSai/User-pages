@@ -2,4 +2,17 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
     <h1>Home Page</h1>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Compose Email</h5>
+            <form method="post" action="{% url 'home' %}">
+                {% csrf_token %}
+                {{ email_form.subject.label_tag }}
+                {{ email_form.subject }}
+                {{ email_form.message.label_tag }}
+                {{ email_form.message }}
+                <button type="submit" class="btn btn-primary">Send Email</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -86,10 +86,10 @@ WSGI_APPLICATION = "website.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "dbdjjicc85sbje",
-        "USER": "zxxmlxygnoythh",
-        "PASSWORD": "ea53c5566a48ca59377fe4c969ec1cd9e21317a161aae473fe907222d883b8ae",
-        "HOST": "ec2-107-21-67-46.compute-1.amazonaws.com",
+        "NAME": "durp085uu8td3",
+        "USER": "teafbqhtprunrf",
+        "PASSWORD": "2262514e4c37b757475cc424a2cdf4bcf04053ff189c0548cdc496d73fdfa4bf",
+        "HOST": "ec2-54-147-155-94.compute-1.amazonaws.com",
         "PORT": "5432"
     }
 }
@@ -139,3 +139,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/login'
+
+
+
+MAILCHIMP_API_KEY = 'aaf19651955d62ab10300043f5ca6964-us14'
+MAILCHIMP_SERVER_PREFIX = 'us14'
+MAILCHIMP_AUDIENCE_ID = 'bc8f7d6c72'

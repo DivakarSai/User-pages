@@ -12,4 +12,8 @@ class RegisterForm(UserCreationForm):
 class LoginForm(forms.Form):
     username_or_email = forms.CharField(label='Username or Email', max_length=254)
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class EmailComposeForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
         
